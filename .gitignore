@@ -1,0 +1,6 @@
+vault.dat
+test_vault.dat
+__pycache__/
+*.pyc
+.venv/
+
