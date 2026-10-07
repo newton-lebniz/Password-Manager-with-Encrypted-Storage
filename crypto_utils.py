@@ -35,4 +35,4 @@ def decrypt_data(token,key):
     try:
         return Fernet(key).decrypt(token).decode()
     except InvalidToken:
-        raise ValueError("Wrong master password or corrupted data")
+        raise ValueError("Wrong master password or corrupted vault")
