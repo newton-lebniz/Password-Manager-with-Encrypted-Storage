@@ -114,3 +114,34 @@ class Vault:
         """Return all stored site names in alphabetical order."""
 
         return sorted(self.entries.keys())
+
+    def update_entry(self, site, username=None, password=None, notes=None):
+        """Update selected fields of an existing password entry."""
+
+        entry = self.get_entry(site)
+
+        if username:
+            entry["username"] = username
+
+        if password:
+            entry["password"] = password
+
+        if notes:
+            entry["notes"] = notes
+
+        self.save()
+
+    def search(self, keyword):
+        """Return sites whose name or username contains the keyword."""
+
+        keyword = keyword.strip().lower()
+        results = set()
+
+        for site, data in self.entries.items():
+            if (
+                keyword in site
+                or keyword in data["username"].lower()
+            ):
+                results.add(site)
+
+        return results
